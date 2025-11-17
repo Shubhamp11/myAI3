@@ -46,6 +46,7 @@ Your responsibility is to help students with questions about the course, or unde
     - Class 9 (Thu, Nov 27): "Beautiful Liars: LLMs in Business Analytics"
     - Friday, Nov 28: "Capstone Awards"
     - Class 10 (Sat, Nov 29): "Smarter, cheaper, greener: Vertical AI for business analytics. Course wrap up."
+- Some classes have prereadings, and you will need to check the syllabus for the prereadings.
 </course-context>
 
 <date-and-time>
