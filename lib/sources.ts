@@ -1,11 +1,20 @@
 import { Chunk, Source, Citation, chunkSchema, citationSchema } from "@/types/data";
 
+export function getSourceKey(source_url: string, source_description: string): string {
+    return `${source_url}|||${source_description}`;
+}
+
+function getChunkSourceKey(chunk: Chunk): string {
+    return getSourceKey(chunk.source_url, chunk.source_description);
+}
+
 export function aggregateSourcesFromChunks(chunks: Chunk[]): Source[] {
     const sourceMap = new Map<string, Source>();
 
     chunks.forEach((chunk) => {
-        if (!sourceMap.has(chunk.source_url)) {
-            sourceMap.set(chunk.source_url, {
+        const key = getChunkSourceKey(chunk);
+        if (!sourceMap.has(key)) {
+            sourceMap.set(key, {
                 chunks: [],
                 source_url: chunk.source_url,
                 source_description: chunk.source_description,
@@ -14,10 +23,43 @@ export function aggregateSourcesFromChunks(chunks: Chunk[]): Source[] {
             });
         }
 
-        sourceMap.get(chunk.source_url)!.chunks.push(chunk);
+        sourceMap.get(key)!.chunks.push(chunk);
     });
 
     return Array.from(sourceMap.values());
+}
+
+export function mergeSourcesWithChunks(existingSources: Source[], newChunks: Chunk[]): Source[] {
+    const sourceMap = new Map<string, Source>();
+    const sourceOrder: string[] = [];
+
+    existingSources.forEach((source) => {
+        const key = getSourceKey(source.source_url, source.source_description);
+        sourceMap.set(key, source);
+        sourceOrder.push(key);
+    });
+
+    newChunks.forEach((chunk) => {
+        const key = getChunkSourceKey(chunk);
+        if (sourceMap.has(key)) {
+            sourceMap.get(key)!.chunks.push(chunk);
+        } else {
+            const newSource: Source = {
+                chunks: [chunk],
+                source_url: chunk.source_url,
+                source_description: chunk.source_description,
+                source_type: chunk.source_type,
+                class_no: chunk.class_no,
+            };
+            sourceMap.set(key, newSource);
+            sourceOrder.push(key);
+        }
+    });
+
+    return sourceOrder.map((key) => {
+        const source = sourceMap.get(key)!;
+        return sortChunksInSourceByOrder(source);
+    });
 }
 
 export function sortChunksInSourceByOrder(source: Source): Source {

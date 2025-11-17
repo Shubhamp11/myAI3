@@ -27,6 +27,7 @@ export async function POST(req: Request) {
             openai: {
                 reasoningSummary: 'auto',
                 reasoningEffort: 'low',
+                parallelToolCalls: false,
             }
         }
     });
