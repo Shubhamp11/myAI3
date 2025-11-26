@@ -77,3 +77,4 @@ The AI is configured to:
 - Configured for Replit environment (port 5000, host 0.0.0.0)
 - Updated prompts to prioritize Pinecone search over web search
 - Added tool description updates to reinforce search priority
+- Fixed: New chat now shows welcome message when clicking "+New" button
