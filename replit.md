@@ -1,7 +1,7 @@
-# MyAI3 - AI Chatbot Assistant
+# CompliBot - AI Compliance Assistant
 
 ## Overview
-MyAI3 is a customizable AI chatbot assistant built with Next.js, featuring web search capabilities, vector database integration (Pinecone), and content moderation. The AI prioritizes searching uploaded documents before falling back to web search.
+CompliBot is a professional AI chatbot assistant built with Next.js, designed to help business owners with compliance, registrations, and regulatory questions. Features web search capabilities, vector database integration (Pinecone), and content moderation.
 
 ## Project Structure
 ```
@@ -12,18 +12,20 @@ myAI3/
 │   │   └── tools/                # AI tools (web search, vector search)
 │   ├── page.tsx                  # Main chat interface (UI)
 │   ├── parts/                    # UI components
+│   │   └── chat-header.tsx       # Header bar component
 │   └── terms/                    # Terms of Use page
 ├── components/                   # React components
 │   ├── ai-elements/              # AI-specific UI components
 │   ├── messages/                 # Message display components
+│   │   ├── assistant-message.tsx # Left-aligned assistant messages
+│   │   ├── user-message.tsx      # Right-aligned user messages
+│   │   └── message-wall.tsx      # Chat message container
 │   └── ui/                       # Reusable UI components (shadcn/ui)
+│       ├── complibot-icon.tsx    # Geometric robot icon
+│       └── typing-indicator.tsx  # Three-dot typing animation
 ├── lib/                          # Utility libraries
-│   ├── moderation.ts             # Content moderation logic
-│   ├── pinecone.ts               # Vector database integration
-│   ├── sources.ts                # Source/citation handling
-│   └── utils.ts                  # General utilities
 ├── types/                        # TypeScript type definitions
-├── config.ts                     # Main configuration (AI name, model, etc.)
+├── config.ts                     # Main configuration
 ├── prompts.ts                    # AI behavior configuration
 └── package.json                  # Dependencies and scripts
 ```
@@ -31,9 +33,9 @@ myAI3/
 ## Key Configuration Files
 
 ### config.ts
-- `AI_NAME`: Name of your AI assistant
+- `AI_NAME`: "CompliBot"
 - `OWNER_NAME`: Your name/organization
-- `WELCOME_MESSAGE`: Initial greeting message
+- `WELCOME_MESSAGE`: "Hello! My name is CompliBot."
 - `MODEL`: AI model to use (currently GPT-4.1)
 - `PINECONE_TOP_K`: Number of results from vector search
 - `PINECONE_INDEX_NAME`: Your Pinecone index name
@@ -51,13 +53,13 @@ myAI3/
 - `PINECONE_API_KEY` (Optional): For vector database search
 - `FIREWORKS_API_KEY` (Optional): Alternative AI provider
 
-## Search Priority
-The AI is configured to:
-1. Search the vector database (Pinecone) FIRST for uploaded documents
-2. Only use web search if:
-   - Vector database returns no relevant results
-   - Results are insufficient or outdated
-   - Query requires real-time information
+## UI Design
+The interface follows a professional, trustworthy design:
+- **Header**: Slim bar with geometric icon, centered title, "+ New" button
+- **Welcome Screen**: Avatar with greeting and three quick prompt pills
+- **Quick Prompts**: "Do I need a factory license?", "What are my labour rights?", "Tell me about waste management."
+- **Messages**: Assistant left-aligned with light cards, user right-aligned compact
+- **Animations**: Hover scale (1.02x), fade-in with slide, typing indicator
 
 ## Development
 - Run: `npm run dev` (starts on port 5000)
@@ -74,7 +76,11 @@ The AI is configured to:
 - Exa web search
 
 ## Recent Changes
-- Configured for Replit environment (port 5000, host 0.0.0.0)
-- Updated prompts to prioritize Pinecone search over web search
-- Added tool description updates to reinforce search priority
-- Fixed: New chat now shows welcome message when clicking "+New" button
+- Rebranded from MyAI3 to CompliBot
+- Redesigned UI with professional, uncluttered look
+- Added geometric CompliBot icon
+- Implemented quick prompt pills on welcome screen
+- Added typing indicator with staggered dot animation
+- Updated message styling (assistant left, user right)
+- Added hover/focus animations throughout
+- Updated placeholder text for compliance context
