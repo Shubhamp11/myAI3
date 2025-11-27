@@ -13,16 +13,14 @@ import {
 } from "@/components/ui/field";
 import { Input } from "@/components/ui/input";
 import { useChat } from "@ai-sdk/react";
-import { ArrowUp, Eraser, Loader2, Plus, PlusIcon, Square } from "lucide-react";
+import { ArrowUp, Square } from "lucide-react";
 import { MessageWall } from "@/components/messages/message-wall";
-import { ChatHeader } from "@/app/parts/chat-header";
-import { ChatHeaderBlock } from "@/app/parts/chat-header";
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import { ChatHeader, ChatHeaderBlock } from "@/app/parts/chat-header";
 import { UIMessage } from "ai";
 import { useEffect, useState, useRef } from "react";
-import { AI_NAME, CLEAR_CHAT_TEXT, OWNER_NAME, WELCOME_MESSAGE } from "@/config";
-import Image from "next/image";
-import Link from "next/link";
+import { AI_NAME, WELCOME_MESSAGE } from "@/config";
+import { CompliBotIcon } from "@/components/ui/complibot-icon";
+import { TypingIndicator } from "@/components/ui/typing-indicator";
 
 const formSchema = z.object({
   message: z
@@ -146,59 +144,87 @@ export default function Chat() {
     toast.success("Chat cleared");
   }
 
+  const hasConversation = messages.length > 1 || (messages.length === 1 && messages[0].role === "user");
+
+  const quickPrompts = [
+    "Do I need a factory license?",
+    "What are my labour rights?",
+    "Tell me about waste management."
+  ];
+
+  const handleQuickPrompt = (prompt: string) => {
+    sendMessage({ text: prompt });
+  };
+
   return (
-    <div className="flex h-screen items-center justify-center font-sans dark:bg-black">
-      <main className="w-full dark:bg-black h-screen relative">
-        <div className="fixed top-0 left-0 right-0 z-50 bg-linear-to-b from-background via-background/50 to-transparent dark:bg-black overflow-visible pb-16">
-          <div className="relative overflow-visible">
-            <ChatHeader>
-              <ChatHeaderBlock />
-              <ChatHeaderBlock className="justify-center items-center">
-                <Avatar
-                  className="size-8 ring-1 ring-primary"
-                >
-                  <AvatarImage src="/logo.png" />
-                  <AvatarFallback>
-                    <Image src="/logo.png" alt="Logo" width={36} height={36} />
-                  </AvatarFallback>
-                </Avatar>
-                <p className="tracking-tight">Chat with {AI_NAME}</p>
-              </ChatHeaderBlock>
-              <ChatHeaderBlock className="justify-end">
-                <Button
-                  variant="outline"
-                  size="sm"
-                  className="cursor-pointer"
-                  onClick={clearChat}
-                >
-                  <Plus className="size-4" />
-                  {CLEAR_CHAT_TEXT}
-                </Button>
-              </ChatHeaderBlock>
-            </ChatHeader>
-          </div>
+    <div className="flex h-screen items-center justify-center font-sans bg-gradient-to-b from-background to-muted/20">
+      <main className="w-full h-screen relative">
+        <div className="fixed top-0 left-0 right-0 z-50">
+          <ChatHeader>
+            <ChatHeaderBlock>
+              <CompliBotIcon size={28} className="text-foreground/80" />
+            </ChatHeaderBlock>
+            <ChatHeaderBlock className="justify-center">
+              <h1 className="text-base font-medium tracking-tight">Talk with {AI_NAME}</h1>
+            </ChatHeaderBlock>
+            <ChatHeaderBlock className="justify-end">
+              <Button
+                variant="outline"
+                size="sm"
+                className="cursor-pointer transition-transform duration-150 hover:scale-[1.02] active:scale-[0.98]"
+                onClick={clearChat}
+              >
+                + New
+              </Button>
+            </ChatHeaderBlock>
+          </ChatHeader>
         </div>
-        <div className="h-screen overflow-y-auto px-5 py-4 w-full pt-[88px] pb-[150px]">
+
+        <div className="h-screen overflow-y-auto px-5 py-4 w-full pt-[72px] pb-[140px]">
           <div className="flex flex-col items-center justify-end min-h-full">
             {isClient ? (
               <>
-                <MessageWall messages={messages} status={status} durations={durations} onDurationChange={handleDurationChange} />
+                {!hasConversation && messages.length > 0 && (
+                  <div className="flex flex-col items-center justify-center mb-8 animate-in fade-in duration-500">
+                    <div className="w-16 h-16 rounded-full bg-muted flex items-center justify-center mb-6">
+                      <CompliBotIcon size={32} className="text-foreground/70" />
+                    </div>
+                    <h2 className="text-2xl font-bold tracking-tight mb-2">Hello! My name is CompliBot.</h2>
+                    <p className="text-muted-foreground text-sm mb-6">How can I help you today?</p>
+                    <div className="flex flex-wrap justify-center gap-3">
+                      {quickPrompts.map((prompt, index) => (
+                        <button
+                          key={index}
+                          onClick={() => handleQuickPrompt(prompt)}
+                          className="px-4 py-2 text-sm rounded-full border border-border/60 bg-background hover:bg-muted/50 hover:border-border transition-all duration-150 hover:scale-[1.02] hover:-translate-y-0.5 focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 active:scale-[0.98]"
+                        >
+                          {prompt}
+                        </button>
+                      ))}
+                    </div>
+                  </div>
+                )}
+                {hasConversation && (
+                  <MessageWall messages={messages} status={status} durations={durations} onDurationChange={handleDurationChange} />
+                )}
                 {status === "submitted" && (
-                  <div className="flex justify-start max-w-3xl w-full">
-                    <Loader2 className="size-4 animate-spin text-muted-foreground" />
+                  <div className="flex justify-start max-w-3xl w-full py-4">
+                    <div className="bg-card/50 rounded-2xl px-4 py-3 border border-border/30">
+                      <TypingIndicator />
+                    </div>
                   </div>
                 )}
               </>
             ) : (
               <div className="flex justify-center max-w-2xl w-full">
-                <Loader2 className="size-4 animate-spin text-muted-foreground" />
+                <TypingIndicator />
               </div>
             )}
           </div>
         </div>
-        <div className="fixed bottom-0 left-0 right-0 z-50 bg-linear-to-t from-background via-background/50 to-transparent dark:bg-black overflow-visible pt-13">
-          <div className="w-full px-5 pt-5 pb-1 items-center flex justify-center relative overflow-visible">
-            <div className="message-fade-overlay" />
+
+        <div className="fixed bottom-0 left-0 right-0 z-50 bg-gradient-to-t from-background via-background/95 to-transparent pt-8">
+          <div className="w-full px-5 pb-6 items-center flex justify-center">
             <div className="max-w-3xl w-full">
               <form id="chat-form" onSubmit={form.handleSubmit(onSubmit)}>
                 <FieldGroup>
@@ -210,12 +236,12 @@ export default function Chat() {
                         <FieldLabel htmlFor="chat-form-message" className="sr-only">
                           Message
                         </FieldLabel>
-                        <div className="relative h-13">
+                        <div className="relative">
                           <Input
                             {...field}
                             id="chat-form-message"
-                            className="h-15 pr-15 pl-5 bg-card rounded-[20px]"
-                            placeholder="Type your message here..."
+                            className="h-14 pr-14 pl-5 bg-card rounded-2xl border-border/50 shadow-sm transition-shadow duration-200 focus:shadow-md"
+                            placeholder="Ask CompliBot about compliance, registrations, fines..."
                             disabled={status === "streaming"}
                             aria-invalid={fieldState.invalid}
                             autoComplete="off"
@@ -228,7 +254,7 @@ export default function Chat() {
                           />
                           {(status == "ready" || status == "error") && (
                             <Button
-                              className="absolute right-3 top-3 rounded-full"
+                              className="absolute right-2 top-2 rounded-full transition-transform duration-150 hover:scale-[1.02] active:scale-[0.98]"
                               type="submit"
                               disabled={!field.value.trim()}
                               size="icon"
@@ -238,7 +264,7 @@ export default function Chat() {
                           )}
                           {(status == "streaming" || status == "submitted") && (
                             <Button
-                              className="absolute right-2 top-2 rounded-full"
+                              className="absolute right-2 top-2 rounded-full transition-transform duration-150 hover:scale-[1.02] active:scale-[0.98]"
                               size="icon"
                               onClick={() => {
                                 stop();
@@ -255,11 +281,8 @@ export default function Chat() {
               </form>
             </div>
           </div>
-          <div className="w-full px-5 py-3 items-center flex justify-center text-xs text-muted-foreground">
-            © {new Date().getFullYear()} {OWNER_NAME}&nbsp;<Link href="/terms" className="underline">Terms of Use</Link>&nbsp;Powered by&nbsp;<Link href="https://ringel.ai/" className="underline">Ringel.AI</Link>
-          </div>
         </div>
       </main>
-    </div >
+    </div>
   );
 }
