@@ -23,7 +23,7 @@ function getDateAndTime(): string {
 export const DATE_AND_TIME = getDateAndTime();
 
 export const AI_NAME = "CompliBot";
-export const OWNER_NAME = "Shubham Pattekar";
+export const OWNER_NAME = "Shubham Pattekar & Jiten Makhija";
 
 export const WELCOME_MESSAGE = `Hello! My name is CompliBot. I’m here to help you with compliance tasks for your MSME in India, like factory laws, labor rules, environmental norms, safety, taxation basics, and registrations.`
 
