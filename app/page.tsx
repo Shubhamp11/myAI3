@@ -173,7 +173,7 @@ export default function Chat() {
       
       <div className="fixed left-4 top-1/2 -translate-y-1/2 z-40 hidden md:block">
         <div className="border bg-background shadow-xs rounded-xl p-3 max-w-[220px]">
-          <h3 className="text-xs font-bold text-gray-600 mb-3 text-center">Quick Facts</h3>
+          <h3 className="text-xs font-bold text-gray-600 mb-3 text-center font-size: 16px">Quick Facts</h3>
           <div className="flex flex-col gap-2">
             <div className="bg-white border border-gray-200 rounded-lg p-2.5 hover:border-gray-300 transition-colors">
               <div className="flex items-center gap-2">
