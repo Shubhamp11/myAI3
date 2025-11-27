@@ -282,7 +282,7 @@ export default function Chat() {
             </div>
           </div>
            <div className="w-full px-5 py-3 items-center flex justify-center text-xs text-muted-foreground">
-            © COMPLIBOT • Created by {new Date().getFullYear()}{OWNER_NAME}&nbsp;
+            © COMPLIBOT {new Date().getFullYear()} • Created by {OWNER_NAME}&nbsp;
            </div>
         </div>
       </main>
