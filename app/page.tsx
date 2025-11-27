@@ -18,7 +18,7 @@ import { MessageWall } from "@/components/messages/message-wall";
 import { ChatHeader, ChatHeaderBlock } from "@/app/parts/chat-header";
 import { UIMessage } from "ai";
 import { useEffect, useState, useRef } from "react";
-import { AI_NAME, WELCOME_MESSAGE } from "@/config";
+import { AI_NAME, WELCOME_MESSAGE, OWNER_NAME } from "@/config";
 import { CompliBotIcon } from "@/components/ui/complibot-icon";
 import { TypingIndicator } from "@/components/ui/typing-indicator";
 
