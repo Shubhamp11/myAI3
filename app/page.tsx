@@ -21,6 +21,7 @@ import { useEffect, useState, useRef } from "react";
 import { AI_NAME, WELCOME_MESSAGE, OWNER_NAME } from "@/config";
 import Image from "next/image";
 import { TypingIndicator } from "@/components/ui/typing-indicator";
+import Link from "next/link";
 
 const formSchema = z.object({
   message: z
