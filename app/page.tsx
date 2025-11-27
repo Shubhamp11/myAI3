@@ -203,6 +203,38 @@ export default function Chat() {
         </div>
       </div>
 
+      <div className="fixed right-4 top-1/2 -translate-y-1/2 z-40 hidden md:block">
+        <div className="border bg-background shadow-xs rounded-xl p-3 max-w-[220px]">
+          <h3 className="text-xs font-bold text-gray-600 mb-3 text-center font-size: 16px">Success Stories</h3>
+          <div className="flex flex-col gap-2">
+            <div className="bg-white border border-gray-200 rounded-lg p-2.5 hover:border-gray-300 transition-colors">
+              <div className="flex items-center gap-2">
+                <span className="text-base">&#127942;</span>
+                <p className="text-xs text-gray-700 font-medium">A textile factory avoided a ₹2 lakh fine by updating registers.</p>
+              </div>
+            </div>
+            <div className="bg-white border border-gray-200 rounded-lg p-2.5 hover:border-gray-300 transition-colors">
+              <div className="flex items-center gap-2">
+                <span className="text-base">&#9989;</span>
+                <p className="text-xs text-gray-700 font-medium">MSME got GST refund of ₹50K after timely filing.</p>
+              </div>
+            </div>
+            <div className="bg-white border border-gray-200 rounded-lg p-2.5 hover:border-gray-300 transition-colors">
+              <div className="flex items-center gap-2">
+                <span className="text-base">&#128170;</span>
+                <p className="text-xs text-gray-700 font-medium">Auto parts unit cleared audit with proper EPF records.</p>
+              </div>
+            </div>
+            <div className="bg-white border border-gray-200 rounded-lg p-2.5 hover:border-gray-300 transition-colors">
+              <div className="flex items-center gap-2">
+                <span className="text-base">&#128640;</span>
+                <p className="text-xs text-gray-700 font-medium">Startup secured funding after compliance certification.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
       <main className="w-full h-screen relative z-10">
         <div className="fixed top-0 left-0 right-0 z-50">
           <ChatHeader>
