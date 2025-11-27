@@ -19,7 +19,7 @@ import { ChatHeader, ChatHeaderBlock } from "@/app/parts/chat-header";
 import { UIMessage } from "ai";
 import { useEffect, useState, useRef } from "react";
 import { AI_NAME, WELCOME_MESSAGE, OWNER_NAME } from "@/config";
-import { CompliBotIcon } from "@/components/ui/complibot-icon";
+import Image from "next/image";
 import { TypingIndicator } from "@/components/ui/typing-indicator";
 
 const formSchema = z.object({
@@ -162,7 +162,9 @@ export default function Chat() {
         <div className="fixed top-0 left-0 right-0 z-50">
           <ChatHeader>
             <ChatHeaderBlock>
-              <CompliBotIcon size={28} className="text-foreground/80" />
+              <div className="w-8 h-8 rounded-lg border border-border/60 overflow-hidden flex items-center justify-center bg-white">
+                <Image src="/logo.png" alt="CompliBot Logo" width={28} height={28} className="object-contain" />
+              </div>
             </ChatHeaderBlock>
             <ChatHeaderBlock className="justify-center">
               <h1 className="text-base font-size: 20px tracking-tight">Talk with {AI_NAME}</h1>
@@ -186,8 +188,8 @@ export default function Chat() {
               <>
                 {!hasConversation && messages.length > 0 && (
                   <div className="flex flex-col items-center justify-center mb-8 animate-in fade-in duration-500">
-                    <div className="w-16 h-16 rounded-full bg-muted flex items-center justify-center mb-6">
-                      <CompliBotIcon size={32} className="text-foreground/70" />
+                    <div className="w-20 h-20 rounded-full bg-white border-2 border-border/60 flex items-center justify-center mb-6 overflow-hidden">
+                      <Image src="/logo.png" alt="CompliBot Logo" width={48} height={48} className="object-contain" />
                     </div>
                     <h2 className="text-2xl font-bold tracking-tight mb-2">Hello! My name is CompliBot.</h2>
                     <p className="text-muted-foreground text-sm mb-6">How can I help you today?</p>
@@ -196,7 +198,7 @@ export default function Chat() {
                         <button
                           key={index}
                           onClick={() => handleQuickPrompt(prompt)}
-                          className="px-4 py-2 text-sm rounded-full border border-border/60 bg-background hover:bg-muted/50 hover:border-border transition-all duration-150 hover:scale-[1.02] hover:-translate-y-0.5 focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 active:scale-[0.98]"
+                          className="px-4 py-2 text-sm rounded-full border border-border/60 bg-white hover:bg-gray-50 hover:border-border transition-all duration-150 hover:scale-[1.02] hover:-translate-y-0.5 focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 active:scale-[0.98]"
                         >
                           {prompt}
                         </button>
