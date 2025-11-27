@@ -165,7 +165,7 @@ export default function Chat() {
               <CompliBotIcon size={28} className="text-foreground/80" />
             </ChatHeaderBlock>
             <ChatHeaderBlock className="justify-center">
-              <h1 className="text-base font-medium tracking-tight">Talk with {AI_NAME}</h1>
+              <h1 className="text-base font-large tracking-tight">TALK WITH {AI_NAME}</h1>
             </ChatHeaderBlock>
             <ChatHeaderBlock className="justify-end">
               <Button
@@ -174,7 +174,7 @@ export default function Chat() {
                 className="cursor-pointer transition-transform duration-150 hover:scale-[1.02] active:scale-[0.98]"
                 onClick={clearChat}
               >
-                + New
+                + New Chat
               </Button>
             </ChatHeaderBlock>
           </ChatHeader>
