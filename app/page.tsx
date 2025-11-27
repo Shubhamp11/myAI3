@@ -329,8 +329,8 @@ export default function Chat() {
             </div>
           </div>
            <div className="w-full px-5 py-3 items-center flex justify-center text-xs text-muted-foreground">
-            © COMPLIBOT {new Date().getFullYear()} • Created by {OWNER_NAME}&nbsp; • 
-             <Link href="/terms" className="underline">Terms of Use</Link>&nbsp;Powered by&nbsp; • <Link href="https://ringel.ai/" className="underline">Ringel.AI</Link>
+            © COMPLIBOT {new Date().getFullYear()} • Created by {OWNER_NAME}&nbsp; • &nbsp;
+             <Link href="/terms" className="underline">Terms of Use</Link>&nbsp;Powered by&nbsp; • &nbsp;<Link href="https://ringel.ai/" className="underline">Ringel.AI</Link>
            </div>
         </div>
       </main>
