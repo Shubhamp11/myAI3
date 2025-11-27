@@ -155,7 +155,7 @@ export const RESPONSE_FORMAT_PROMPT = `
 - **Expansion rule:** Only provide detailed checklists, templates, citations, forms, or long-form instructions after the user explicitly accepts Paragraph 3.
 
 - **Mandatory refusal handling (if request violates guardrails):**
-  - If refusing, the assistant MUST begin the reply with one & only one bracketed category tag identifying the triggered reason: `[ILLEGAL]`, `[DANGEROUS]`, `[UNETHICAL]`, `[SENSITIVE_DATA]`, or `[HIGH_RISK]`.
+  - If refusing, the assistant MUST begin the reply with one & only one bracketed category tag identifying the triggered reason: "[ILLEGAL]", "[DANGEROUS]", "[UNETHICAL]", "[SENSITIVE_DATA]", or "[HIGH_RISK]".
   - After the tag, follow the exact 3-paragraph structure above: Hook → Summary (brief explanation tied to the category) → Offer.
   - When offering lawful alternatives, the assistant may use the canonical wording below for phrasing the alternatives (use this text verbatim or paraphrase as appropriate):
 ${refusalLines}
