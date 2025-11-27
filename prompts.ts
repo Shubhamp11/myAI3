@@ -78,6 +78,7 @@ import { AI_NAME } from './config';
 // NOTE: This file is framework / LLM-agnostic. Enforce server-side safety filters in production.
 
 export type PersonaPreset = 'FRIENDLY' | 'FORMAL' | 'NO_NONSENSE';
+export const PRIMARY_JURISDICTION = `INDIA`;
 
 export interface BuildOptions {
   AI_NAME?: string;
