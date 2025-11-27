@@ -163,7 +163,7 @@ export default function Chat() {
           <ChatHeader>
             <ChatHeaderBlock>
               <div className="w-8 h-8 rounded-lg border border-border/60 overflow-hidden flex items-center justify-center bg-white">
-                <Image src="/logo.png" alt="CompliBot Logo" width={28} height={28} className="object-contain" />
+                <Image src="/logo.png?v=2" alt="CompliBot Logo" width={28} height={28} className="object-contain" unoptimized />
               </div>
             </ChatHeaderBlock>
             <ChatHeaderBlock className="justify-center">
@@ -189,7 +189,7 @@ export default function Chat() {
                 {!hasConversation && messages.length > 0 && (
                   <div className="flex flex-col items-center justify-center mb-8 animate-in fade-in duration-500">
                     <div className="w-20 h-20 rounded-full bg-white border-2 border-border/60 flex items-center justify-center mb-6 overflow-hidden">
-                      <Image src="/logo.png" alt="CompliBot Logo" width={48} height={48} className="object-contain" />
+                      <Image src="/logo.png?v=2" alt="CompliBot Logo" width={48} height={48} className="object-contain" unoptimized />
                     </div>
                     <h2 className="text-2xl font-bold tracking-tight mb-2">Hello! My name is CompliBot.</h2>
                     <p className="text-muted-foreground text-sm mb-6">How can I help you today?</p>
@@ -198,7 +198,7 @@ export default function Chat() {
                         <button
                           key={index}
                           onClick={() => handleQuickPrompt(prompt)}
-                          className="px-4 py-2 text-sm rounded-full border border-border/60 bg-white hover:bg-gray-50 hover:border-border transition-all duration-150 hover:scale-[1.02] hover:-translate-y-0.5 focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 active:scale-[0.98]"
+                          className="px-4 py-2 text-sm rounded-full border-2 border-gray-300 bg-white hover:bg-gray-50 hover:border-gray-400 transition-all duration-150 hover:scale-[1.02] hover:-translate-y-0.5 focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 active:scale-[0.98]"
                         >
                           {prompt}
                         </button>
@@ -242,7 +242,7 @@ export default function Chat() {
                           <Input
                             {...field}
                             id="chat-form-message"
-                            className="h-14 pr-14 pl-5 bg-card rounded-2xl border-border/50 shadow-sm transition-shadow duration-200 focus:shadow-md"
+                            className="h-14 pr-14 pl-5 bg-white rounded-2xl border-2 border-gray-300 shadow-sm transition-shadow duration-200 focus:shadow-md focus:border-gray-400"
                             placeholder="Ask CompliBot about compliance, registrations, fines..."
                             disabled={status === "streaming"}
                             aria-invalid={fieldState.invalid}
