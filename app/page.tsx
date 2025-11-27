@@ -157,8 +157,41 @@ export default function Chat() {
   };
 
   return (
-    <div className="flex h-screen items-center justify-center font-sans bg-gradient-to-b from-background to-muted/20">
-      <main className="w-full h-screen relative">
+    <div className="flex h-screen items-center justify-center font-sans relative">
+      <div 
+        className="absolute inset-0 z-0"
+        style={{
+          backgroundImage: 'url(/factory_bckgnd.jpg)',
+          backgroundSize: 'cover',
+          backgroundPosition: 'center',
+          backgroundRepeat: 'no-repeat',
+          opacity: 0.3,
+        }}
+      />
+      <div className="absolute inset-0 z-0 bg-gradient-to-b from-white/70 to-white/90" />
+      
+      <div className="fixed left-4 top-1/2 -translate-y-1/2 z-40 hidden md:flex flex-col gap-3 max-w-[220px]">
+        <div className="bg-white/90 backdrop-blur-sm border border-gray-200 rounded-xl p-3 shadow-lg hover:shadow-xl transition-shadow">
+          <div className="flex items-center gap-2">
+            <span className="text-lg">&#128176;</span>
+            <p className="text-xs text-gray-700 font-medium">India has 63M+ MSMEs contributing 30% of GDP</p>
+          </div>
+        </div>
+        <div className="bg-white/90 backdrop-blur-sm border border-gray-200 rounded-xl p-3 shadow-lg hover:shadow-xl transition-shadow">
+          <div className="flex items-center gap-2">
+            <span className="text-lg">&#9878;</span>
+            <p className="text-xs text-gray-700 font-medium">75+ labour laws consolidated into 4 codes</p>
+          </div>
+        </div>
+        <div className="bg-white/90 backdrop-blur-sm border border-gray-200 rounded-xl p-3 shadow-lg hover:shadow-xl transition-shadow">
+          <div className="flex items-center gap-2">
+            <span className="text-lg">&#127981;</span>
+            <p className="text-xs text-gray-700 font-medium">Factory license required for 10+ workers</p>
+          </div>
+        </div>
+      </div>
+
+      <main className="w-full h-screen relative z-10">
         <div className="fixed top-0 left-0 right-0 z-50">
           <ChatHeader>
             <ChatHeaderBlock>
