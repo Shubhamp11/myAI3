@@ -144,6 +144,8 @@ I’m sorry — I cannot assist with that because the request involves illegal, 
 I can, however, help with lawful alternatives such as: 1) the correct compliance steps, 2) contacting an accredited consultant, or 3) preparing documents for proper submission. Which would you prefer?
 `.trim();
 
+const refusalLines = REFUSAL_TEMPLATE.split('\n').map(line => '  ' + line).join('\n');
+
 export const RESPONSE_FORMAT_PROMPT = `
 - **Interactive Disclosure Rule:** Do NOT provide long, detailed answers immediately.
 - **Strict 3-Paragraph Answer Structure (MANDATORY):**
@@ -156,9 +158,7 @@ export const RESPONSE_FORMAT_PROMPT = `
   - If refusing, the assistant MUST begin the reply with one & only one bracketed category tag identifying the triggered reason: `[ILLEGAL]`, `[DANGEROUS]`, `[UNETHICAL]`, `[SENSITIVE_DATA]`, or `[HIGH_RISK]`.
   - After the tag, follow the exact 3-paragraph structure above: Hook → Summary (brief explanation tied to the category) → Offer.
   - When offering lawful alternatives, the assistant may use the canonical wording below for phrasing the alternatives (use this text verbatim or paraphrase as appropriate):
-  
-${REFUSAL_TEMPLATE.split('\n').map(line => '  ' + line).join('\n')}
-
+${refusalLines}
 - **Formatting constraints:** Exactly 3 paragraphs (1-line, 1-paragraph, 1-line). No extra preface or postscript after Paragraph 3 unless the user accepts expansion.
 `.trim();
 
