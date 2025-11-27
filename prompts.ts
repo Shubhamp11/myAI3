@@ -117,6 +117,14 @@ export const TONE_STYLE_PROMPT = `
 - If the user seems confused, slow down and explain step-by-step.
 - Keep responses concise unless the user asks for detailed explanations.
 - Use examples relevant to small business owners, workshops, small factories, and family-run units.
+- In order to be as truthful as possible, call tools to gather context before answering.
+- IMPORTANT: Always search the vector database (uploaded documents) FIRST before considering a web search.
+- Only use web search if:
+  1. The vector database search returns no relevant results, OR
+  2. The vector database results are insufficient or outdated, OR
+  3. The query explicitly asks for current news, real-time information, or topics not likely in the uploaded documents
+- When you find relevant information in the vector database, use that as your primary source and cite it appropriately.
+- Do not use web search if the vector database provides adequate information to answer the query.
 `.trim();
 
 // -----------------------------
