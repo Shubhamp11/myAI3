@@ -165,14 +165,14 @@ export default function Chat() {
           backgroundSize: 'cover',
           backgroundPosition: 'center',
           backgroundRepeat: 'no-repeat',
-          opacity: 0.55,
+          opacity: 0.40,
         }}
       />
-      <div className="absolute inset-0 z-0 bg-gradient-to-b from-white/50 to-white/70" />
+      <div className="absolute inset-0 z-0 bg-gradient-to-b from-white/60 to-white/80" />
       
       <div className="fixed left-4 top-1/2 -translate-y-1/2 z-40 hidden md:block">
         <div className="border bg-background shadow-xs rounded-xl p-3 max-w-[220px]">
-          <h3 className="text-xs font-semibold text-gray-600 mb-3 px-1">Quick Facts</h3>
+          <h3 className="text-xs font-bold text-gray-600 mb-3 text-center">Quick Facts</h3>
           <div className="flex flex-col gap-2">
             <div className="bg-white border border-gray-200 rounded-lg p-2.5 hover:border-gray-300 transition-colors">
               <div className="flex items-center gap-2">
@@ -190,6 +190,12 @@ export default function Chat() {
               <div className="flex items-center gap-2">
                 <span className="text-base">&#127981;</span>
                 <p className="text-xs text-gray-700 font-medium">Factory license required for 10+ workers</p>
+              </div>
+            </div>
+            <div className="bg-white border border-gray-200 rounded-lg p-2.5 hover:border-gray-300 transition-colors">
+              <div className="flex items-center gap-2">
+                <span className="text-base">&#128209;</span>
+                <p className="text-xs text-gray-700 font-medium">GST registration mandatory above Rs 40 lakh turnover</p>
               </div>
             </div>
           </div>

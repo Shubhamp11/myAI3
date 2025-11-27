@@ -6,8 +6,8 @@ import { ToolCall, ToolResult } from "./tool-call";
 export function AssistantMessage({ message, status, isLastMessage, durations, onDurationChange }: { message: UIMessage; status?: string; isLastMessage?: boolean; durations?: Record<string, number>; onDurationChange?: (key: string, duration: number) => void }) {
     return (
         <div className="w-full flex justify-start animate-in fade-in slide-in-from-bottom-2 duration-300">
-            <div className="max-w-full sm:max-w-[85%] bg-white rounded-2xl px-4 py-3 border-2 border-gray-300 shadow-sm">
-                <div className="text-sm flex flex-col gap-4 leading-relaxed text-justify">
+            <div className="max-w-full sm:max-w-[85%] bg-background rounded-2xl px-4 py-3 border border-input shadow-xs">
+                <div className="text-sm flex flex-col gap-4 leading-relaxed text-left">
                     {message.parts.map((part, i) => {
                         const isStreaming = status === "streaming" && isLastMessage && i === message.parts.length - 1;
                         const durationKey = `${message.id}-${i}`;
